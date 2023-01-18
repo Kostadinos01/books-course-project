@@ -1,9 +1,15 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 
+// Importing React and React Hooks
 import { useState } from "react";
 
-export default function BookCreate({ onCreate }) {
+// Importing a custom hook
+import { useBooksContext } from "../../customHooks/useBooksContext";
+
+export default function BookCreate() {
   const [title, setTitle] = useState("");
+
+  const { createBook } = useBooksContext();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -12,7 +18,7 @@ export default function BookCreate({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onCreate(title);
+    createBook(title);
 
     setTitle("");
   };

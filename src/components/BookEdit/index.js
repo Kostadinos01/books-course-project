@@ -1,7 +1,13 @@
+// Importing React and React Hooks
 import { useState } from "react";
+
+// Importing a custom hook
+import { useBooksContext } from "../../customHooks/useBooksContext";
 
 export default function BookEdit({ book, onSubmit }) {
   const [title, setTitle] = useState(book.title);
+
+  const { editBookById } = useBooksContext();
 
   const handleChange = (event) => {
     setTitle(event.target.value);
@@ -10,7 +16,8 @@ export default function BookEdit({ book, onSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSubmit(book.id, title);
+    onSubmit();
+    editBookById(book.id, title);
   };
 
   return (

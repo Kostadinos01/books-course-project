@@ -1,21 +1,27 @@
+// Importing React and React Hooks
 import { useState } from "react";
 
+// Importing a custom hook
+import { useBooksContext } from "../../customHooks/useBooksContext";
+
+// Importing components
 import BookEdit from "../BookEdit";
 
-export default function BookShow({ book, onDelete, onEdit }) {
+export default function BookShow({ book }) {
   const [showEdit, setShowEdit] = useState(false);
 
+  const { deleteBookById } = useBooksContext();
+
   const handleDeleteClick = () => {
-    onDelete(book.id);
+    deleteBookById(book.id);
   };
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
 
-  const handleSubmit = (id, newTitle) => {
+  const handleSubmit = () => {
     setShowEdit(false);
-    onEdit(id, newTitle);
   };
 
   let content = <h3>{book.title}</h3>;
