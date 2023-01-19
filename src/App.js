@@ -1,16 +1,19 @@
-import { useEffect, useContext } from "react";
+// Importing React and React Hooks
+import { useEffect } from "react";
 
-import BooksContext from "./context/books";
+// Importing a custom hook
+import { useBooksContext } from "./customHooks/useBooksContext";
 
+// Importing components
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
 
 function App() {
-  const { fetchBooks } = useContext(BooksContext);
+  const { fetchBooks } = useBooksContext();
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [fetchBooks]);
 
   return (
     <div className="app">
